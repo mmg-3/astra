@@ -34,6 +34,9 @@ jobs:
         env:
           COMPOSE_INTERACTIVE_NO_CLI: true
 
+      - name: Test the new site
+        run: curl -I http://localhost:8890
+
       - name: run Lighthouse CI
         run: |
           npm install -g @lhci/cli@0.7.x

@@ -11,5 +11,5 @@ jobs:
     steps:
       - uses: styfle/cancel-workflow-action@0.8.0
         with:
-          workflow_id: build-test-measure.yml
+          workflow_id: lighthouse-ci.yml
           access_token: ${{ github.token }}

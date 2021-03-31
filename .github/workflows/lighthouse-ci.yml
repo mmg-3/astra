@@ -40,3 +40,9 @@ jobs:
           lhci autorun
         env:
           LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
+
+      - name: Stop Docker environment
+        run: npm run env:stop
+        if: always()
+        env:
+          COMPOSE_INTERACTIVE_NO_CLI: true

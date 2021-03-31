@@ -13,11 +13,6 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.sha }}
 
-      - name: Use Node.js 10.x
-        uses: actions/setup-node@v1
-        with:
-          node-version: 10.x
-
       - name: Get npm cache directory
         id: npm-cache
         run: echo "::set-output name=dir::$(npm config get cache)"
@@ -39,8 +34,8 @@ jobs:
         env:
           COMPOSE_INTERACTIVE_NO_CLI: true
 
-      - name: Is the site accessible?
-        run: curl -I http://localhost:8890
+      - name: Use Node.js 10.x
+        run: nvm use 10
 
       - name: run Lighthouse CI
         run: |

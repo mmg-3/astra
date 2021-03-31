@@ -2,10 +2,7 @@ name: CI
 
 # Run the deployment only when code is committed to the branch.
 on:
-  push:
-    branches:
-      - development
-      - next-release
+  pull_request:
 
 jobs:
   lhci:

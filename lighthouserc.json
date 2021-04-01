@@ -7,7 +7,16 @@
       "target": "temporary-public-storage"
     },
     "assert": {
-      "preset": "lighthouse:recommended"
+      "preset": "lighthouse:recommended",
+      "assertions": {
+        "themed-omnibox": "off",
+        "splash-screen": "off",
+        "service-worker": "off",
+        "meta-description": "off",
+        "maskable-icon": "off",
+        "installable-manifest": "off",
+        "apple-touch-icon": "off"
+      }
     }
   }
 }

@@ -45,6 +45,11 @@ jobs:
         exclude: "{**/*.map,**/node_modules/**}"
         build-script: "dynamic-css"
 
+    # compressed-size-action checks out to base branch but does not revert back to current branch.
+    - uses: actions/checkout@v2
+      with:
+          ref: ${{ github.event.pull_request.head.sha }}
+
     - name: Use Node.js 12.x
       uses: actions/setup-node@v1
       with:

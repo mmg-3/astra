@@ -11,6 +11,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+      with:
+          ref: ${{ github.event.pull_request.head.sha }}
 
     - name: Get npm cache directory
       id: npm-cache
@@ -33,16 +35,6 @@ jobs:
       env:
         COMPOSE_INTERACTIVE_NO_CLI: true
 
-    - uses: preactjs/compressed-size-action@v2
-      with:
-        repo-token: "${{ secrets.GITHUB_TOKEN }}"
-        # Any JS files anywhere within a dist directory:
-        pattern: "{assets/**/**/*.js,assets/**/**/*.css}"
-
-        # Always ignore SourceMaps and node_modules:
-        exclude: "{**/*.map,**/node_modules/**}"
-        build-script: "dynamic-css"
-
     - name: Use Node.js 12.x
       uses: actions/setup-node@v1
       with:
@@ -55,8 +47,18 @@ jobs:
       env:
         LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
 
+    - uses: preactjs/compressed-size-action@v2
+      with:
+        repo-token: "${{ secrets.GITHUB_TOKEN }}"
+        # Any JS files anywhere within a dist directory:
+        pattern: "{assets/**/**/*.js,assets/**/**/*.css}"
+
+        # Always ignore SourceMaps and node_modules:
+        exclude: "{**/*.map,**/node_modules/**}"
+        build-script: "dynamic-css"
+
     - name: Stop Docker environment
       run: npm run env:stop
       if: always()
       env:
-        COMPOSE_INTERACTIVE_]NO_CLI: true
+        COMPOSE_INTERACTIVE_NO_CLI: true

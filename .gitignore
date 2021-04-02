@@ -33,3 +33,6 @@ cghooks.lock
 
 # Lighthouse CI
 .lighthouseci/
+
+# Dynamic CSS file.
+assets/dynamic-css.css
